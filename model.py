@@ -5,15 +5,10 @@ from torchvision import transforms, models
 
 # 特征提取类:让输入对图像经过baseline的(去掉全连接层)卷积神经网络 得到图像特征
 class FeatureExtraction(nn.Module):
-    def __init__(self, pretrained, model_type="Resnet18"):
+    def __init__(self, pretrained, model_type="VGG16"):
         super(FeatureExtraction, self).__init__()
 
-        if model_type == "Resnet18":
-            self.model = models.resnet18(pretrained=pretrained)
-        elif model_type == "AlexNet":
-            self.model = models.alexnet(pretrained=pretrained)
-        elif model_type == "VGG16":
-            self.model = models.vgg16(pretrained=pretrained)
+        self.model = models.vgg16(pretrained=pretrained)
 
         self.model = nn.Sequential(*list(self.model.children())[:-1])  # 去掉网络的最后全连接层
 
@@ -21,7 +16,6 @@ class FeatureExtraction(nn.Module):
         return self.model(image)  # 以resnet为例 [B,3,224,224] 将变为 [B,512,1,1]
 
 
-# 自定义的全连接层
 class FullConnect(nn.Module):
     def __init__(self, input_dim=512, output_dim=2):
         super(FullConnect, self).__init__()

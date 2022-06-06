@@ -1,8 +1,6 @@
 # 线稿人脸属性识别
 
-![FS2K](cover pictures/FS2K.png)
-
-
+![FS2K](cover_pictures/FS2K.png)
 
 ## 数据集获取方式
 

@@ -28,7 +28,7 @@ https://github.com/DengPingFan/FS2K
 
 #### train
 
-```sh
+```python
 python train.py
 ```
 
